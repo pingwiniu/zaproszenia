@@ -1,0 +1,353 @@
+/* ────────────────────────────────────────────────
+   Osiemnastka — minimalistyczny styl (mobile-first)
+   Fonty: Inter Tight (nagłówki) + Inter (tekst)
+   ──────────────────────────────────────────────── */
+
+:root {
+  --bg: #000000;
+  --surface: #101012;
+  --text: #f5f5f7;
+  --text-dim: #86868b;
+  --hairline: rgba(255, 255, 255, 0.12);
+  --gradient: linear-gradient(100deg, #f5c26b 0%, #f472b6 50%, #a78bfa 100%);
+  --radius: 24px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Layout ── */
+.container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+section {
+  margin-top: 88px;
+}
+
+/* ── Typografia ── */
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 14px;
+}
+
+.lead {
+  font-size: 1.25rem;
+  line-height: 1.55;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.lead strong {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.dim { color: var(--text-dim); }
+
+.gradient-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Hero ── */
+.hero {
+  min-height: 92dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  margin-top: 0;
+}
+
+.hero h1 {
+  font-family: "Inter Tight", "Inter", sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.6rem, 11vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.hero .subtitle {
+  color: var(--text-dim);
+  font-size: 1.15rem;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  max-width: 30ch;
+}
+
+.hero-arrow {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--text-dim);
+  animation: bounce 2.4s ease-in-out infinite;
+}
+
+.hero { position: relative; }
+
+.hero-arrow svg { width: 22px; height: 22px; }
+
+@keyframes bounce {
+  0%, 100% { transform: translate(-50%, 0); opacity: 0.4; }
+  50% { transform: translate(-50%, 8px); opacity: 0.9; }
+}
+
+/* ── Zdjęcie ── */
+.photo-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.photo-frame {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.photo-frame img,
+.photo-initials {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter Tight", sans-serif;
+  font-weight: 700;
+  font-size: 5rem;
+  color: var(--text-dim);
+}
+
+.photo-caption {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+/* ── Szczegóły ── */
+.details-list {
+  border-top: 1px solid var(--hairline);
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.detail-row svg {
+  width: 20px;
+  height: 20px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+.detail-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.detail-value {
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-top: 2px;
+}
+
+.detail-value a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--text-dim);
+  text-underline-offset: 3px;
+}
+
+/* ── Odliczanie ── */
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
+  margin-top: 6px;
+}
+
+.count-num {
+  font-family: "Inter Tight", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.9rem, 9vw, 2.6rem);
+  letter-spacing: -0.03em;
+  display: block;
+  font-variant-numeric: tabular-nums;
+}
+
+.count-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+}
+
+.countdown-done {
+  grid-column: 1 / -1;
+  font-family: "Inter Tight", sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  padding: 12px 0;
+}
+
+/* ── RSVP ── */
+.rsvp-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 24px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn:active { transform: scale(0.97); opacity: 0.85; }
+
+.btn svg { width: 18px; height: 18px; }
+
+.btn-primary {
+  background: var(--text);
+  color: #000;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--hairline);
+  color: var(--text);
+}
+
+.rsvp-note {
+  color: var(--text-dim);
+  font-size: 0.88rem;
+  margin-top: 16px;
+}
+
+/* ── Stopka ── */
+footer {
+  margin-top: 96px;
+  padding-top: 24px;
+  border-top: 1px solid var(--hairline);
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+}
+
+footer .signature {
+  font-family: "Inter Tight", sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-top: 6px;
+}
+
+/* ── Animacje wejścia ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero > * {
+  opacity: 0;
+  animation: hero-in 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero > *:nth-child(1) { animation-delay: 0.15s; }
+.hero > *:nth-child(2) { animation-delay: 0.3s; }
+.hero > *:nth-child(3) { animation-delay: 0.45s; }
+.hero > *:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Konfetti ── */
+#confetti-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+
+/* ── Większe ekrany ── */
+@media (min-width: 720px) {
+  .container { max-width: 560px; }
+  .rsvp-buttons { flex-direction: row; }
+  .rsvp-buttons .btn { flex: 1; }
+}
+
+/* ── Redukcja ruchu ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

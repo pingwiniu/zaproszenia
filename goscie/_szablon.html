@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ZMIEŃ: imię w tytule -->
+  <title>Zaproszenie dla Ciebie — Osiemnastka Juliana</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <script>
+    // ─────────────────────────────────────────────────────
+    // SZABLON — skopiuj ten plik jako goscie/imie.html
+    // i uzupełnij pola poniżej. Reszta zrobi się sama.
+    // ─────────────────────────────────────────────────────
+    window.GUEST = {
+      // Imię gościa (pojawi się w nagłówku „Hej, …!")
+      imie: "Imię",
+
+      // Ścieżka do zdjęcia — wrzuć plik do folderu zdjecia/.
+      // Jeśli pliku nie ma, pokaże się kółko z inicjałem.
+      zdjecie: "../zdjecia/imie.jpg",
+
+      // Podpis pod zdjęciem (opcjonalny — możesz usunąć linię)
+      podpisZdjecia: "Pamiętasz to zdjęcie? 😄",
+
+      // Dlaczego zapraszasz tę osobę. Możesz używać <strong>…</strong>
+      // do wyróżnień i <br> do nowej linii.
+      opis: "Napisz tu coś od serca — wspólne wspomnienie, " +
+            "za co lubisz tę osobę i dlaczego <strong>musi</strong> być na imprezie.",
+    };
+  </script>
+  <div id="app"></div>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="../js/dane.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>
