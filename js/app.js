@@ -90,7 +90,6 @@
     : `
       <div class="rsvp-block">
         <a class="btn btn-primary" id="btn-yes" href="sms:${esc(P.telefon)}?body=${smsBody}">Będę 🎉</a>
-        <a class="btn btn-secondary" href="tel:${esc(P.telefon)}"><i data-lucide="phone"></i> Zadzwoń</a>
       </div>`;
 
   slides.push(`
@@ -101,9 +100,8 @@
         ${detail("map-pin", "Gdzie", `${esc(P.miejsce)} &middot; <a href="${esc(P.mapaUrl)}" target="_blank" rel="noopener">${esc(P.adres)}</a>`)}
         ${detail("shirt", "Dress code", esc(P.dresscode))}
       </div>
-      <p class="eyebrow">Potwierdź do ${esc(P.rsvpDo)}</p>
+      <p class="eyebrow">Potwierdź obecność</p>
       ${rsvpHtml}
-      <p class="rsvp-note">Masz pytania? Pisz śmiało o każdej porze. — ${esc(P.solenizant)}</p>
     </div>`);
 
   // ── Render ─────────────────────────────────────────────────
@@ -115,6 +113,11 @@
         </div>
         ${slides.map((s) => `<div class="slide">${s}</div>`).join("")}
         <canvas id="confetti-canvas"></canvas>
+      </div>
+      <div class="desktop-note">
+        <i data-lucide="smartphone"></i>
+        <h2>Otwórz na telefonie</h2>
+        <p>To zaproszenie jest w formie relacji i najlepiej wygląda na komórce.<br>Otwórz swój link na telefonie.</p>
       </div>
     </div>`;
 

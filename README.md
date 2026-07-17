@@ -25,14 +25,14 @@ css/style.css       — style
 zdjecia/            — zdjęcia gości (imie.jpg)
 ```
 
-## ✅ Zanim wyślesz — uzupełnij `js/dane.js`
+## ✅ Dane imprezy — `js/dane.js`
 
-Pola oznaczone `TODO`:
+Wszystko w jednym miejscu: data, godzina, miejsce (Borówiec, Drapałka 3B),
+dress code, klucz Pageclip. Zostało do uzupełnienia: **telefon** (używany
+tylko jako fallback SMS, gdyby Pageclip padł).
 
-- **miejsce, adres, mapaUrl** — gdzie impreza
-- **telefon** — Twój numer (fallback, gdy Pageclip niepodłączony)
-- **pageclipKey** — klucz z pageclip.co (patrz niżej)
-- ewentualnie godzina, termin RSVP, dress code
+Na komputerze strona pokazuje komunikat „Otwórz na telefonie” —
+zaproszenie jest projektowane pod komórkę.
 
 ## 📨 RSVP przez Pageclip
 
@@ -60,7 +60,9 @@ Dopóki `pageclipKey` jest pusty, zamiast formularza pokazują się przyciski
 3. Wrzuć zdjęcie do `zdjecia/imie.jpg` (pionowe wygląda najlepiej — wyświetla się pełnoekranowo). Brak zdjęcia = inicjał.
 4. Wyślij gościowi link: `https://twoja-strona/goscie/imie.html`.
 
-Przykładowi goście (Kasia, Michał, Ola) są tylko demo — usuń ich pliki albo podmień treść.
+Goście są już dodani (13 osób — pliki w `goscie/`). Opisy „Dlaczego Ty” są
+ogólne — warto je spersonalizować w każdym pliku. Dwóch Szymonów ma pliki
+`szymon-jewstrat.html` i `szymon-stawecki.html`.
 
 ## 🌍 Publikacja (GitHub Pages)
 

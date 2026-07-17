@@ -13,16 +13,14 @@ window.PARTY = {
   dataTekst: "16 sierpnia 2026",
   godzina: "18:00",
 
-  // TODO: uzupełnij miejsce imprezy
-  miejsce: "Nazwa miejsca (uzupełnij)",
-  adres: "ul. Przykładowa 1, Miasto",
-  mapaUrl: "https://maps.google.com/?q=ul.+Przykładowa+1",
+  miejsce: "Borówiec",
+  adres: "Drapałka 3B",
+  mapaUrl: "https://maps.google.com/?q=Drapałka+3B,+Borówiec",
 
-  dresscode: "Elegancko, ale wygodnie — będzie się działo!",
+  dresscode: "Luźno, jak na grilla",
 
-  // TODO: wpisz swój numer — używany, gdy Pageclip nie jest skonfigurowany
+  // Używany tylko, gdyby Pageclip nie był skonfigurowany (przycisk SMS)
   telefon: "+48000000000",
-  rsvpDo: "9 sierpnia 2026",
 
   // Klucz Pageclip (Site API Key z pageclip.co) — włącza formularz RSVP.
   // Gdyby był pusty, zamiast formularza pokażą się przyciski SMS / telefon.

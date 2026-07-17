@@ -60,15 +60,39 @@ body {
   -webkit-user-select: none;
 }
 
-/* Na desktopie — telefon na środku, jak IG w przeglądarce */
-@media (min-width: 720px) {
-  .story-stage { background: #0a0a0c; }
-  .story-viewport {
-    width: min(430px, calc(100dvh * 9 / 16));
-    height: min(100dvh - 32px, 932px);
-    border-radius: 28px;
-    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.8), 0 0 0 1px var(--hairline);
-  }
+/* Na komputerze — zamiast story komunikat „otwórz na telefonie" */
+.desktop-note {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  padding: 32px;
+}
+
+.desktop-note svg {
+  width: 44px;
+  height: 44px;
+  color: var(--text-dim);
+  animation: pulse-hint 2.4s ease-in-out infinite;
+}
+
+.desktop-note h2 {
+  font-family: "Inter Tight", "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 1.9rem;
+  letter-spacing: -0.02em;
+}
+
+.desktop-note p {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .story-viewport { display: none; }
+  .desktop-note { display: flex; }
 }
 
 /* ── Paski postępu ── */
