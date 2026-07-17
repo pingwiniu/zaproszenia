@@ -24,7 +24,7 @@ window.PARTY = {
   telefon: "+48000000000",
   rsvpDo: "9 sierpnia 2026",
 
-  // TODO: klucz Pageclip (Site API Key z pageclip.co) — włącza formularz RSVP.
-  // Dopóki jest pusty, zamiast formularza pokażą się przyciski SMS / telefon.
-  pageclipKey: "",
+  // Klucz Pageclip (Site API Key z pageclip.co) — włącza formularz RSVP.
+  // Gdyby był pusty, zamiast formularza pokażą się przyciski SMS / telefon.
+  pageclipKey: "hzC6LHOPT7T2h8CELwjeRXFDq2fqnKDP",
 };

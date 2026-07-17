@@ -73,7 +73,7 @@
 
   const rsvpHtml = hasPageclip
     ? `
-      <form id="rsvp-form" class="rsvp-block"
+      <form id="rsvp-form" class="rsvp-block pageclip-form"
             action="https://send.pageclip.co/${esc(P.pageclipKey)}/osiemnastka" method="post">
         <input type="hidden" name="imie" value="${esc(G ? G.imie : "Gość (strona główna)")}">
         <div class="pill-group">
@@ -81,7 +81,7 @@
           <label><input type="radio" name="obecnosc" value="Nie dam rady"><span>Nie dam rady</span></label>
         </div>
         <textarea name="wiadomosc" rows="2" placeholder="Krótka wiadomość (opcjonalnie)"></textarea>
-        <button type="submit" class="btn btn-primary" id="btn-submit">Wyślij</button>
+        <button type="submit" class="btn btn-primary pageclip-form__submit" id="btn-submit"><span>Wyślij</span></button>
       </form>
       <div class="rsvp-success" id="rsvp-success" hidden>
         <i data-lucide="check-circle-2"></i>
@@ -246,14 +246,15 @@
   const form = document.getElementById("rsvp-form");
   if (form && window.Pageclip) {
     const submitBtn = document.getElementById("btn-submit");
+    const submitLabel = submitBtn.querySelector("span");
     Pageclip.form(form, {
       onSubmit: function () {
         submitBtn.disabled = true;
-        submitBtn.textContent = "Wysyłanie…";
+        submitLabel.textContent = "Wysyłanie…";
       },
       onResponse: function (error) {
         submitBtn.disabled = false;
-        submitBtn.textContent = "Wyślij";
+        submitLabel.textContent = "Wyślij";
         if (error) {
           alert("Ups, nie udało się wysłać. Spróbuj jeszcze raz albo napisz SMS.");
           return false;

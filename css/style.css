@@ -383,6 +383,8 @@ textarea::placeholder { color: var(--text-dim); }
   font-size: 0.85rem;
 }
 
+.rsvp-success[hidden] { display: none; }
+
 .rsvp-success {
   display: flex;
   flex-direction: column;
