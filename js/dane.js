@@ -20,7 +20,11 @@ window.PARTY = {
 
   dresscode: "Elegancko, ale wygodnie — będzie się działo!",
 
-  // TODO: wpisz swój numer — przycisk „Będę!” wyśle SMS
+  // TODO: wpisz swój numer — używany, gdy Pageclip nie jest skonfigurowany
   telefon: "+48000000000",
   rsvpDo: "9 sierpnia 2026",
+
+  // TODO: klucz Pageclip (Site API Key z pageclip.co) — włącza formularz RSVP.
+  // Dopóki jest pusty, zamiast formularza pokażą się przyciski SMS / telefon.
+  pageclipKey: "",
 };
