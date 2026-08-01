@@ -31,7 +31,7 @@
       <p class="eyebrow">Osiemnastka ${esc(P.dataTekst)}</p>
       ${G
         ? `<h1>Hej, <span class="gradient-text">${esc(G.imie)}</span>.</h1>
-           <p class="subtitle">Chciałbym Cię zaprosić na moje 18. urodziny.</p>`
+           <p class="subtitle">Chciałbym ${G.mnoga ? "Was" : "Cię"} zaprosić na moje 18. urodziny.</p>`
         : `<h1><span class="gradient-text">${esc(P.solenizant)}</span> kończy 18 lat.</h1>
            <p class="subtitle">Każde zaproszenie jest osobiste — otwórz swój link, żeby zobaczyć wiadomość dla Ciebie.</p>`}
       <p class="days-left">${daysTxt}</p>
