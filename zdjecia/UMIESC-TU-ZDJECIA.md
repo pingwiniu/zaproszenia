@@ -1,11 +1,18 @@
-# Zdjęcia gości
+# Zdjęcia gości (wersje na stronę)
 
-Wrzuć tu zdjęcia w formacie `.jpg` (najlepiej kwadratowe, min. 600×600 px).
+Tu leżą **przeskalowane** zdjęcia. Oryginały trzymamy w `people/img/`.
 
-Nazwa pliku musi pasować do nazwy pliku gościa, np.:
+Nowe zdjęcie przerabiamy tak (maks. 1600 px, jakość 4):
 
-- `goscie/bogusz.html` → `zdjecia/bogusz.jpg`
-- `goscie/szymon-jewstrat.html` → `zdjecia/szymon-jewstrat.jpg`
+```sh
+ffmpeg -y -i people/img/NOWE.jpg \
+  -vf "scale=w=1600:h=1600:force_original_aspect_ratio=decrease" \
+  -q:v 4 zdjecia/imie.jpg
+```
+
+Ścieżkę wpisujemy w pliku gościa, w `window.GUEST.zdjecie`, np.
+`goscie/4f7c653c.html` → `../zdjecia/bogusz.jpg`. Nazwa pliku ze zdjęciem
+nie musi pasować do losowej nazwy strony.
 
 Zdjęcia wyświetlają się pełnoekranowo — pionowe wyglądają najlepiej.
 

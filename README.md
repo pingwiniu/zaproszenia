@@ -53,16 +53,20 @@ Pageclip to backend dla formularzy na statycznych stronach — odpowiedzi gości
 Dopóki `pageclipKey` jest pusty, zamiast formularza pokazują się przyciski
 **SMS** i **Zadzwoń** (używają pola `telefon`).
 
-## ➕ Jak dodać gościa
+## ➕ Goście
 
-1. Skopiuj `goscie/_szablon.html` jako `goscie/imie.html` (małe litery, bez polskich znaków — to będzie link).
-2. W skopiowanym pliku uzupełnij `imie`, `opis`, `podpisZdjecia` i tytuł strony (`<title>`).
-3. Wrzuć zdjęcie do `zdjecia/imie.jpg` (pionowe wygląda najlepiej — wyświetla się pełnoekranowo). Brak zdjęcia = inicjał.
-4. Wyślij gościowi link: `https://twoja-strona/goscie/imie.html`.
+10 osób już dodanych — pliki w `goscie/` mają **losowe nazwy**, żeby nikt nie
+zgadł cudzego linku i nie potwierdził obecności za kogoś. Mapa „kto → który
+plik” leży w `LINKI.md`, który **celowo nie trafia do repo** (jest w
+`.gitignore`) — publikacja tej tabeli zniweczyłaby sens losowych adresów.
 
-Goście są już dodani (13 osób — pliki w `goscie/`). Opisy „Dlaczego Ty” są
-ogólne — warto je spersonalizować w każdym pliku. Dwóch Szymonów ma pliki
-`szymon-jewstrat.html` i `szymon-stawecki.html`.
+Teksty zaproszeń powstały z `people/opisy.md` (też lokalnie, poza repo).
+Oryginały zdjęć trzymamy w `people/img/`, na stronę idą przeskalowane
+wersje w `zdjecia/`.
+
+**Nowy gość:** skopiuj `goscie/_szablon.html` pod losową nazwą, uzupełnij
+`imie` i `opis`, wrzuć przeskalowane zdjęcie do `zdjecia/` (pionowe —
+wyświetla się pełnoekranowo; brak zdjęcia = inicjał), dopisz do `LINKI.md`.
 
 ## 🌍 Publikacja (GitHub Pages)
 
@@ -71,9 +75,11 @@ ogólne — warto je spersonalizować w każdym pliku. Dwóch Szymonów ma pliki
 3. Po chwili strona będzie pod `https://<login>.github.io/zaproszenia/`,
    a zaproszenia pod `https://<login>.github.io/zaproszenia/goscie/imie.html`.
 
-> Uwaga: repo publiczne = linki technicznie dostępne dla każdego, kto je zna.
-> Strony mają `noindex`, więc Google ich nie zaindeksuje, ale nie wrzucaj tu
-> niczego bardzo prywatnego.
+> Uwaga: GitHub Pages na darmowym planie wymaga **publicznego repo** — wtedy
+> każdy może przejrzeć kod i zobaczyć wszystkie linki oraz opisy (losowe nazwy
+> chronią tylko przed zgadywaniem adresu, nie przed czytaniem repo). Jeśli to
+> przeszkadza, opublikuj za darmo z prywatnego repo przez Netlify albo
+> Cloudflare Pages. Strony mają `noindex` — Google ich nie zaindeksuje.
 
 ## Technikalia
 

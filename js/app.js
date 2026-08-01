@@ -28,41 +28,37 @@
 
   slides.push(`
     <div class="slide-inner">
-      <p class="eyebrow">Osiemnastka &middot; ${esc(P.dataTekst)}</p>
+      <p class="eyebrow">Osiemnastka ${esc(P.dataTekst)}</p>
       ${G
         ? `<h1>Hej, <span class="gradient-text">${esc(G.imie)}</span>.</h1>
-           <p class="subtitle">Zapraszam Cię na moje 18. urodziny. Bez Ciebie to nie będzie to samo.</p>`
+           <p class="subtitle">Chciałbym Cię zaprosić na moje 18. urodziny.</p>`
         : `<h1><span class="gradient-text">${esc(P.solenizant)}</span> kończy 18 lat.</h1>
            <p class="subtitle">Każde zaproszenie jest osobiste — otwórz swój link, żeby zobaczyć wiadomość dla Ciebie.</p>`}
       <p class="days-left">${daysTxt}</p>
-      <p class="tap-hint">Dotknij, aby przejść dalej <i data-lucide="chevron-right"></i></p>
     </div>`);
 
-  if (G && G.opis) {
+  // Zdjęcie i tekst na jednym slajdzie: zdjęcie w tle, tekst na dole.
+  if (G && (G.opis || G.zdjecie)) {
     slides.push(`
-      <div class="slide-inner">
-        <p class="eyebrow">Dlaczego Ty</p>
-        <p class="lead">${G.opis}</p>
+      <div class="slide-inner${G.zdjecie ? " slide-photo" : ""}">
+        ${G.zdjecie
+          ? `<img class="photo-bg" src="${esc(G.zdjecie)}" alt="Zdjęcie: ${esc(G.imie)}"
+                  onerror="this.outerHTML='<div class=&quot;photo-initials&quot;>${esc(G.imie.trim()[0] || "?")}</div>'">
+             <div class="photo-overlay"></div>`
+          : ""}
+        ${G.opis || G.podpisZdjecia
+          ? `<div class="photo-text">
+               ${G.opis ? `<p class="lead">${G.opis}</p>` : ""}
+               ${G.podpisZdjecia ? `<p class="photo-caption">${esc(G.podpisZdjecia)}</p>` : ""}
+             </div>`
+          : ""}
       </div>`);
   }
 
-  if (G && G.zdjecie) {
-    slides.push(`
-      <div class="slide-inner slide-photo">
-        <img class="photo-bg" src="${esc(G.zdjecie)}" alt="Zdjęcie: ${esc(G.imie)}"
-             onerror="this.outerHTML='<div class=&quot;photo-initials&quot;>${esc(G.imie.trim()[0] || "?")}</div>'">
-        <div class="photo-overlay"></div>
-        ${G.podpisZdjecia ? `<p class="photo-caption">${esc(G.podpisZdjecia)}</p>` : ""}
-      </div>`);
-  }
-
-  const detail = (icon, label, value) => `
+  const detail = (icon, value) => `
     <div class="detail-row">
       <i data-lucide="${icon}"></i>
-      <div>
-        <div class="detail-label">${label}</div>
-        <div class="detail-value">${value}</div>
-      </div>
+      <div class="detail-value">${value}</div>
     </div>`;
 
   const hasPageclip = P.pageclipKey && !/TODO|TWOJ/i.test(P.pageclipKey);
@@ -96,9 +92,9 @@
     <div class="slide-inner">
       <p class="eyebrow">Szczegóły</p>
       <div class="details-list">
-        ${detail("calendar", "Kiedy", `${esc(P.dzienTygodnia)}, ${esc(P.dataTekst)}, ${esc(P.godzina)}`)}
-        ${detail("map-pin", "Gdzie", `${esc(P.miejsce)} &middot; <a href="${esc(P.mapaUrl)}" target="_blank" rel="noopener">${esc(P.adres)}</a>`)}
-        ${detail("shirt", "Dress code", esc(P.dresscode))}
+        ${detail("calendar", `${esc(P.dzienTygodnia)}, ${esc(P.dataTekst)}, ${esc(P.godzina)}`)}
+        ${detail("map-pin", `<a href="${esc(P.mapaUrl)}" target="_blank" rel="noopener">${esc(P.miejsce)}, ${esc(P.adres)}</a>`)}
+        ${detail("shirt", esc(P.dresscode))}
       </div>
       <p class="eyebrow">Potwierdź obecność</p>
       ${rsvpHtml}
@@ -135,7 +131,6 @@
   let idx = Math.max(0, Math.min(N - 1, (parseInt(location.hash.slice(1), 10) || 1) - 1));
   let elapsed = 0;
   let paused = false;
-  let pressedAt = 0;
   let lastT = null;
 
   function show(i) {
@@ -171,21 +166,27 @@
   }
   requestAnimationFrame(frame);
 
-  // Tap: prawa strona → dalej, lewa 1/3 → wstecz. Przytrzymanie: pauza.
+  // Swipe w lewo → dalej, w prawo → wstecz. Przytrzymanie: pauza.
   const INTERACTIVE = "a, button, input, textarea, label, form";
+  const SWIPE_MIN = 48; // px
+
+  let startX = 0;
+  let startY = 0;
 
   viewport.addEventListener("pointerdown", (e) => {
-    pressedAt = performance.now();
+    startX = e.clientX;
+    startY = e.clientY;
     if (!e.target.closest(INTERACTIVE)) paused = true;
   });
 
   viewport.addEventListener("pointerup", (e) => {
     paused = false;
     if (e.target.closest(INTERACTIVE)) return;
-    if (performance.now() - pressedAt < 300) {
-      const x = e.clientX - viewport.getBoundingClientRect().left;
-      if (x < viewport.clientWidth / 3) show(idx - 1);
-      else show(idx + 1);
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    if (Math.abs(dx) > SWIPE_MIN && Math.abs(dx) > Math.abs(dy)) {
+      if (dx < 0) show(idx + 1);
+      else show(idx - 1);
     }
   });
 

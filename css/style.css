@@ -55,7 +55,7 @@ body {
   height: 100dvh;
   overflow: hidden;
   background: var(--bg);
-  touch-action: manipulation;
+  touch-action: pan-y; /* pion = scroll slajdu, poziom = swipe obsługiwany w JS */
   user-select: none;
   -webkit-user-select: none;
 }
@@ -167,6 +167,19 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Tło zdjęcia tylko się wyłania — bez przesunięcia (inset: 0) */
+.slide.active .slide-inner > .photo-bg,
+.slide.active .slide-inner > .photo-initials,
+.slide.active .slide-inner > .photo-overlay {
+  animation-name: fade;
+  animation-delay: 0s;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 /* ── Typografia ── */
 .eyebrow {
   font-size: 0.78rem;
@@ -208,30 +221,11 @@ h1 {
 
 .days-left strong { color: var(--text); font-weight: 600; }
 
-.tap-hint {
-  position: absolute;
-  bottom: calc(env(safe-area-inset-bottom, 0px) + 20px);
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 0.8rem;
-  color: var(--text-dim);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  animation: pulse-hint 2.4s ease-in-out infinite;
+/* ── Slajd ze zdjęciem (tekst leży na zdjęciu) ── */
+.slide-photo {
+  padding: 0;
+  justify-content: flex-end;
 }
-
-.tap-hint svg { width: 15px; height: 15px; }
-
-@keyframes pulse-hint {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
-}
-
-/* ── Slajd ze zdjęciem ── */
-.slide-photo { padding: 0; }
 
 .slide-photo .photo-bg,
 .slide-photo .photo-initials {
@@ -256,18 +250,34 @@ h1 {
 .photo-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 45%),
+  /* mocniejszy dół — pod dłuższym tekstem zaproszenia */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%,
+                                      rgba(0, 0, 0, 0.6) 35%,
+                                      transparent 72%),
               linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, transparent 25%);
 }
 
+/* Blok z tekstem nad zdjęciem */
+.photo-text {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 28px calc(env(safe-area-inset-bottom, 0px) + 40px);
+}
+
+/* Bez zdjęcia (np. Iwona) — blok wyśrodkowany, bez dodatkowych marginesów */
+.slide-inner:not(.slide-photo) > .photo-text { padding: 0; }
+
+.slide-photo .photo-text .lead {
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.75);
+}
+
 .photo-caption {
-  position: absolute;
-  left: 28px;
-  right: 28px;
-  bottom: calc(env(safe-area-inset-bottom, 0px) + 44px);
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 500;
   letter-spacing: -0.01em;
+  color: var(--text-dim);
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
 }
 
@@ -289,13 +299,6 @@ h1 {
   height: 18px;
   color: var(--text-dim);
   flex-shrink: 0;
-}
-
-.detail-label {
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-dim);
 }
 
 .detail-value {

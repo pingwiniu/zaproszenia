@@ -1,0 +1,8 @@
+# Repo jest publiczne — te pliki zostają wyłącznie lokalnie.
+
+# Oryginały zdjęć (pełna rozdzielczość) i teksty źródłowe zaproszeń.
+# Na stronę idą przeskalowane wersje z zdjecia/.
+people/
+
+# Mapowanie „imię → losowy link”. Publikacja zniweczyłaby sens losowych adresów.
+LINKI.md
