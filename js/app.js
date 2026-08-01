@@ -42,7 +42,8 @@
     slides.push(`
       <div class="slide-inner${G.zdjecie ? " slide-photo" : ""}">
         ${G.zdjecie
-          ? `<img class="photo-bg" src="${esc(G.zdjecie)}" alt="Zdjęcie: ${esc(G.imie)}"
+          ? `<img class="photo-blur" src="${esc(G.zdjecie)}" alt="" aria-hidden="true">
+             <img class="photo-bg" src="${esc(G.zdjecie)}" alt="Zdjęcie: ${esc(G.imie)}"
                   onerror="this.outerHTML='<div class=&quot;photo-initials&quot;>${esc(G.imie.trim()[0] || "?")}</div>'">
              <div class="photo-overlay"></div>`
           : ""}
