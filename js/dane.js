@@ -6,12 +6,12 @@ window.PARTY = {
   solenizant: "Julian",
 
   // Data i godzina rozpoczęcia (do odliczania)
-  dataISO: "2026-08-16T18:00:00",
+  dataISO: "2026-08-16T17:00:00",
 
   // Teksty wyświetlane na zaproszeniu
   dzienTygodnia: "niedziela",
   dataTekst: "16 sierpnia 2026",
-  godzina: "18:00",
+  godzina: "17:00",
 
   miejsce: "Borówiec",
   adres: "Drapałka 3B",
