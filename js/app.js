@@ -6,8 +6,11 @@
 // RSVP: formularz Pageclip (albo SMS/telefon, gdy brak klucza).
 // ─────────────────────────────────────────────────────────────
 (function () {
-  const P = window.PARTY;
   const G = window.GUEST || null;
+  // Gość może nadpisać dane imprezy (np. inny termin) polem `party`.
+  const P = Object.assign({}, window.PARTY, (G && G.party) || {});
+  // „16 sierpnia 2026" → „16 sierpnia" (do zdań w środku tekstu)
+  const dataKrotka = String(P.dataTekst).replace(/\s*\d{4}\s*$/, "");
 
   function esc(s) {
     return String(s).replace(/[&<>"']/g, (c) => ({
@@ -65,7 +68,7 @@
   const hasPageclip = P.pageclipKey && !/TODO|TWOJ/i.test(P.pageclipKey);
 
   const smsBody = encodeURIComponent(
-    `Hej ${P.solenizant}! ${G ? "Tu " + G.imie + " — b" : "B"}ędę na Twojej osiemnastce 16 sierpnia.`
+    `Hej ${P.solenizant}! ${G ? "Tu " + G.imie + " — b" : "B"}ędę na Twojej osiemnastce ${dataKrotka}.`
   );
 
   const rsvpHtml = hasPageclip
@@ -266,7 +269,7 @@
         }
         const attending = form.elements.obecnosc.value === "Będę";
         document.getElementById("rsvp-success-text").textContent = attending
-          ? "Super, do zobaczenia 16 sierpnia! 🎉"
+          ? `Super, do zobaczenia ${dataKrotka}! 🎉`
           : "Szkoda! Ale dzięki, że dałeś/aś znać. 💜";
         form.hidden = true;
         document.getElementById("rsvp-success").hidden = false;

@@ -64,6 +64,18 @@ Teksty zaproszeń powstały z `people/opisy.md` (też lokalnie, poza repo).
 Oryginały zdjęć trzymamy w `people/img/`, na stronę idą przeskalowane
 wersje w `zdjecia/`.
 
+**Inny termin dla jednego gościa:** w pliku gościa dopisz do `window.GUEST`
+pole `party` z nadpisywanymi kluczami — reszta danych leci z `js/dane.js`:
+
+```js
+party: {
+  dataISO: "2026-08-15T14:00:00",
+  dzienTygodnia: "sobota",
+  dataTekst: "15 sierpnia 2026",
+  godzina: "14:00",
+},
+```
+
 **Nowy gość:** skopiuj `goscie/_szablon.html` pod losową nazwą, uzupełnij
 `imie` i `opis`, wrzuć przeskalowane zdjęcie do `zdjecia/` (pionowe —
 wyświetla się pełnoekranowo; brak zdjęcia = inicjał), dopisz do `LINKI.md`.
